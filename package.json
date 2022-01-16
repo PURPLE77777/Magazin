@@ -1,0 +1,25 @@
+{
+  "name": "magazin",
+  "version": "1.0.0",
+  "description": "project itans",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PURPLE77777/Magazin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PURPLE77777/Magazin/issues"
+  },
+  "homepage": "https://github.com/PURPLE77777/Magazin#readme",
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "install": "^0.13.0",
+    "npm": "^8.3.1"
+  }
+}
