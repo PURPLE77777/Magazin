@@ -14,6 +14,14 @@ function Modal({
     signInShow,
     logInShow,
 }) {
+    console.log({
+        showModal,
+        showSignIn,
+        showLogIn,
+        modalShow,
+        signInShow,
+        logInShow,
+    });
     return (
         <div className={showModal ? "modal-window show" : "modal-window"}>
             <div
@@ -27,6 +35,7 @@ function Modal({
                 <button
                     className="modal-close"
                     onClick={() => {
+                        console.log("btn: LogIn");
                         logInShow();
                         modalShow();
                     }}
@@ -72,6 +81,7 @@ function Modal({
                 <button
                     className="modal-close"
                     onClick={() => {
+                        console.log("btn: SignIn");
                         signInShow();
                         modalShow();
                     }}
