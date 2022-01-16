@@ -1,0 +1,16 @@
+html,
+body {
+    margin: 0px;
+    height: 100%;
+    transition: 0.3s all ease;
+    #root {
+        height: 100%;
+        background-color: #333333;
+        .wrap {
+            min-height: 100%;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-between;
+        }
+    }
+}

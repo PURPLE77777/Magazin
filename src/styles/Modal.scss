@@ -1,0 +1,133 @@
+.modal-window {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.5s all ease;
+    z-index: -1;
+    .modal_form_sign-in,
+    .modal_form_log-in {
+        position: absolute;
+        border-radius: 12px;
+        background-color: wheat;
+        opacity: 0;
+        transform: scale(0);
+        transition: 0.5s all ease;
+        color: yellow;
+        background-color: #1a1f25;
+        .title {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .form-in {
+            margin: 20px 30px;
+            text-align: center;
+            width: 300px;
+            input {
+                background-color: black;
+                border: none;
+                border-radius: 8px;
+                height: 25px;
+                padding: 5px 10px;
+                margin: 5px 0px;
+                color: white;
+                outline: none;
+                width: 93%;
+            }
+            input:focus {
+                outline: 2px solid yellow;
+            }
+            .input-correct {
+                outline: 2px solid green;
+            }
+            .input-incorrect {
+                outline: 2px solid red;
+            }
+            button {
+                position: relative;
+                padding: 5px 20px;
+                border-radius: 5px;
+                border: none;
+                font-weight: bold;
+                margin-top: 10px;
+                color: #1a1f25;
+                cursor: pointer;
+                background-color: rgb(171, 0, 214);
+                transition: 0.3s all ease;
+            }
+            button::before,
+            button::after {
+                content: "";
+                position: absolute;
+                height: 100%;
+                top: 0px;
+                width: 0px;
+                background-color: rgba(158, 158, 158, 0.3);
+                transition: 0.3s all ease;
+            }
+            button::before {
+                left: 0px;
+                border-radius: 5px 0px 0px 5px;
+            }
+            button::after {
+                right: 0px;
+                border-radius: 0px 5px 5px 0px;
+            }
+            button:hover {
+                color: black;
+                background-color: rgb(238, 255, 2);
+            }
+            button:active::before,
+            button:active::after {
+                width: 100%;
+            }
+        }
+        .modal-close {
+            position: absolute;
+            top: 9%;
+            right: 2%;
+            background-color: transparent;
+            border: none;
+            border-radius: 12px;
+            color: white;
+        }
+        .modal-close:hover,
+        .modal-close:hover::after {
+            cursor: pointer;
+            transform: scale(1);
+            color: black;
+        }
+        .modal-close::after {
+            content: "";
+            position: absolute;
+            top: -1px;
+            right: 1px;
+            width: 19px;
+            height: 18px;
+            border-radius: 12px;
+            background-color: rgb(255, 0, 0, 0.5);
+            transform: scale(0);
+            transition: 0.3s all ease;
+            z-index: -1;
+        }
+        .modal-close:active::after {
+            background-color: rgb(238, 255, 2);
+        }
+    }
+    .sign-in-show,
+    .log-in-show {
+        position: relative;
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+.show {
+    z-index: 2;
+    opacity: 1;
+}
