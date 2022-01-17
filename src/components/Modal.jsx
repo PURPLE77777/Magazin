@@ -1,9 +1,9 @@
 import React from "react";
 import "../styles/Modal.scss";
 import { Show_Modal, Show_SignIn, Show_LogIn } from "./reducers/actions";
-import { bindActionCreators } from "redux";
-import { mapStateToProps } from "./reducers/mapStateToProps.js";
-import { ModalComponent } from "./reducers/consts.js";
+// import { bindActionCreators } from "redux";
+// import { mapStateToProps } from "./reducers/mapStateToProps.js";
+// import { ModalComponent } from "./reducers/consts.js";
 import { connect } from "react-redux";
 
 function Modal({
@@ -14,14 +14,7 @@ function Modal({
     signInShow,
     logInShow,
 }) {
-    console.log({
-        showModal,
-        showSignIn,
-        showLogIn,
-        modalShow,
-        signInShow,
-        logInShow,
-    });
+    console.log(modalShow);
     return (
         <div className={showModal ? "modal-window show" : "modal-window"}>
             <div
@@ -35,9 +28,8 @@ function Modal({
                 <button
                     className="modal-close"
                     onClick={() => {
-                        console.log("btn: LogIn");
-                        logInShow();
-                        modalShow();
+                        logInShow(false);
+                        modalShow(false);
                     }}
                 >
                     X
@@ -81,9 +73,8 @@ function Modal({
                 <button
                     className="modal-close"
                     onClick={() => {
-                        console.log("btn: SignIn");
-                        signInShow();
-                        modalShow();
+                        signInShow(false);
+                        modalShow(false);
                     }}
                 >
                     X
@@ -112,15 +103,29 @@ function Modal({
     );
 }
 
-function mapDispatchToProps(dispatch) {
+function mapStateToProps(state) {
     return {
-        modalShow: bindActionCreators(Show_Modal, dispatch),
-        signInShow: bindActionCreators(Show_SignIn, dispatch),
-        logInShow: bindActionCreators(Show_LogIn, dispatch),
+        showModal: state.ModalReducer.showModal,
+        showSignIn: state.ModalReducer.showSignIn,
+        showLogIn: state.ModalReducer.showLogIn,
     };
 }
 
-export default connect(
-    mapStateToProps(ModalComponent),
-    mapDispatchToProps
-)(Modal);
+function mapDispatchToProps(dispatch) {
+    return {
+        // modalShow: bindActionCreators(Show_Modal(), dispatch),
+        // signInShow: bindActionCreators(Show_SignIn(), dispatch),
+        // logInShow: bindActionCreators(Show_LogIn(), dispatch),
+        modalShow: () => {
+            return dispatch(Show_Modal());
+        },
+        signInShow: () => {
+            return dispatch(Show_SignIn());
+        },
+        logInShow: () => {
+            return dispatch(Show_LogIn());
+        },
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);

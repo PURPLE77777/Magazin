@@ -1,7 +1,6 @@
 import { ModalComponent } from "./consts.js";
 
 export const mapStateToProps = (component) => {
-    console.log(component);
     switch (component) {
         case ModalComponent: {
             return function (state) {

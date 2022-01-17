@@ -2,21 +2,16 @@ import React from "react";
 import "../styles/Header.scss";
 import brand from "../img/brand.svg";
 import Modal from "./Modal.jsx";
-import { useDispatch } from "react-redux";
+
+import { Show_Modal, Show_SignIn, Show_LogIn } from "./reducers/actions";
+// import { bindActionCreators } from "redux";
+// import { mapStateToProps } from "./reducers/mapStateToProps.js";
+// import { ModalComponent } from "./reducers/consts.js";
+import { connect } from "react-redux";
 
 // import { Link } from "react-router-dom";
 
-export default function Header() {
-    const dispatch = useDispatch();
-    const setShowModalSignIn = () => {
-        dispatch({ type: "SHOW_MODAL", data: true });
-        dispatch({ type: "SHOW_SignIn", data: true });
-    };
-    const setShowModalLogIn = () => {
-        dispatch({ type: "SHOW_MODAL", data: true });
-        dispatch({ type: "SHOW_LogIn", data: true });
-    };
-
+function Header({ modalShow, signInShow, logInShow }) {
     return (
         <div className="Header">
             <div className="header-container">
@@ -42,14 +37,22 @@ export default function Header() {
                     <div className="login-btns">
                         <button
                             className="sign-in"
-                            onClick={() => setShowModalSignIn()}
+                            onClick={() => {
+                                console.log("btn: sign-in");
+                                modalShow(true);
+                                signInShow(true);
+                            }}
                         >
                             Sign in
                         </button>
                         <span className="OR">|</span>
                         <button
                             className="log-in"
-                            onClick={() => setShowModalLogIn()}
+                            onClick={() => {
+                                console.log("btn: Log-in");
+                                modalShow(true);
+                                logInShow(true);
+                            }}
                         >
                             Log in
                         </button>
@@ -84,3 +87,30 @@ export default function Header() {
         </div>
     );
 }
+
+function mapStateToProps(state) {
+    return {
+        showModal: state.ModalReducer.showModal,
+        showSignIn: state.ModalReducer.showSignIn,
+        showLogIn: state.ModalReducer.showLogIn,
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        // modalShow: bindActionCreators(Show_Modal(), dispatch),
+        // signInShow: bindActionCreators(Show_SignIn(), dispatch),
+        // logInShow: bindActionCreators(Show_LogIn(), dispatch),
+        modalShow: () => {
+            return dispatch(Show_Modal());
+        },
+        signInShow: () => {
+            return dispatch(Show_SignIn());
+        },
+        logInShow: () => {
+            return dispatch(Show_LogIn());
+        },
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

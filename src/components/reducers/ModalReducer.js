@@ -6,14 +6,13 @@ const defaultState = {
     showLogIn: false,
 };
 const ModalReducer = (state = defaultState, action) => {
-    console.log(action);
     switch (action.type) {
         case SHOW_MODAL:
-            return { ...state, showModal: !state.showModal };
+            return { ...state, showModal: action.data };
         case SHOW_SignIn:
-            return { ...state, showSignIn: !state.showModal };
+            return { ...state, showSignIn: action.data };
         case SHOW_LogIn:
-            return { ...state, showLogIn: !state.showModal };
+            return { ...state, showLogIn: action.data };
         default:
             return state;
     }
