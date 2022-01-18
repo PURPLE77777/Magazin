@@ -87,10 +87,19 @@
             button:active::after {
                 width: 100%;
             }
+            .error {
+                display: none;
+                width: 100%;
+                color: red;
+                margin-top: 5px;
+            }
+            .see {
+                display: block;
+            }
         }
         .modal-close {
             position: absolute;
-            top: 9%;
+            top: 6%;
             right: 2%;
             background-color: transparent;
             border: none;
