@@ -1,4 +1,4 @@
-export const products = {
+const products = {
     Balls: {
         "Volley ball Mikasa V300W": {
             img: "https://cdn1.ozone.ru/s3/multimedia-r/wc400/6030770343.jpg",
@@ -54,3 +54,5 @@ export const products = {
         },
     },
 };
+
+export default products;

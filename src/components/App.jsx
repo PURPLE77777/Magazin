@@ -15,12 +15,15 @@ export default function App() {
         <BrowserRouter>
             <div className="wrap">
                 <Header></Header>
-                <Routes>
-                    <Route path="/home" element={Home()}></Route>
-                    <Route path="/products" element={Products()}></Route>
-                    <Route path="/about" element={About()}></Route>
-                    <Route path="*" element={Home()}></Route>
-                </Routes>
+                <div className="main">
+                    <div className="background"></div>
+                    <Routes>
+                        <Route path="/home" element={Home()}></Route>
+                        <Route path="/products" element={Products()}></Route>
+                        <Route path="/about" element={About()}></Route>
+                        <Route path="*" element={Home()}></Route>
+                    </Routes>
+                </div>
                 <Footer></Footer>
             </div>
         </BrowserRouter>

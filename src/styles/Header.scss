@@ -237,5 +237,48 @@
                 }
             }
         }
+        .burger-menu-wrap {
+            display: none;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            border-radius: 50%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            color: white;
+            transition: 0.3s ease all;
+            cursor: pointer;
+            .burger-menu {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .burger-menu-wrap::after {
+            content: "";
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: inherit;
+            height: inherit;
+            border-radius: inherit;
+            background-color: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            transition: 0.3s ease all;
+        }
+        .burger-menu-wrap:active::after {
+            transform: scale(1);
+        }
+        @media (max-width: 1000) {
+            .burger-menu {
+                display: block;
+            }
+            // .menu {
+            // display: flex;
+            // flex-flow: row nowrap;
+            // align-items: center;
+            // justify-content: space-between;
+            // width: 100%;
+            // }
+        }
     }
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Header.scss";
 import brand from "../img/brand.svg";
+import burgerMenu from "../img/burger-menu.svg";
 import Modal from "./Modal.jsx";
 
 import { Show_Modal, Show_SignIn, Show_LogIn } from "./reducers/actions";
@@ -92,6 +93,13 @@ export default function Header() {
                             </button>
                         </div>
                     </div>
+                </div>
+                <div className="burger-menu-wrap">
+                    <img
+                        className="burger-menu"
+                        src={burgerMenu}
+                        alt="burger-menu"
+                    ></img>
                 </div>
             </div>
         </div>
