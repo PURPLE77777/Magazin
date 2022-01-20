@@ -2,6 +2,7 @@ html,
 body {
     margin: 0px;
     height: 100%;
+    user-select: none;
     transition: 0.3s all ease;
     #root {
         height: 100%;
@@ -11,6 +12,10 @@ body {
             display: flex;
             flex-flow: column nowrap;
             justify-content: space-between;
+            background-image: url("../img/background.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
         }
     }
 }

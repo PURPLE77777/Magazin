@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { USER_NAME } from "./reducers/consts.js";
 import "../styles/Modal.scss";
-import { Show_Modal, Show_SignIn, Show_LogIn } from "./reducers/actions";
+import {
+    Show_Modal,
+    Show_SignIn,
+    Show_LogIn,
+    Remember_Me,
+} from "./reducers/actions";
 
 export default function Modal() {
     const showModal = useSelector((state) => state.ModalReducer.showModal);
@@ -19,14 +25,10 @@ export default function Modal() {
     const [errorNewName, setErrorNewName] = useState(false);
     const [errorEmail, setErrorEmail] = useState(false);
 
-    // const [pass, setPass] = useState(null);
-    // const [name, setName] = useState(null);
-    // const [email, setEmail] = useState(null);
-
     const validator = (type, value) => {
         switch (type) {
             case "newname": {
-                const regexp = /[a-zA-Z\d]{6,}/gm;
+                const regexp = /[a-zA-Z\d]{10,}/gm;
                 if (regexp.test(value)) {
                     setStatusNewName(false);
                     setErrorNewName(true);
@@ -78,19 +80,36 @@ export default function Modal() {
 
     const dispatch = useDispatch();
 
-    function closeModalLogIn(value) {
-        dispatch(Show_LogIn(value));
-        dispatch(Show_Modal(value));
+    function closeModalLogIn() {
+        dispatch(Show_LogIn(false));
+        dispatch(Show_Modal(false));
     }
 
-    function closeModalSignIn(value) {
-        dispatch(Show_SignIn(value));
-        dispatch(Show_Modal(value));
+    function closeModalSignIn() {
+        dispatch(Show_SignIn(false));
+        dispatch(Show_Modal(false));
+    }
+
+    function LogIn(e) {
+        e.preventDefault();
+        closeModalLogIn();
+        dispatch(Remember_Me(e.target.elements["log-in-uniquename"].value));
+        localStorage.setItem(
+            USER_NAME,
+            e.target.elements["log-in-uniquename"].value
+        );
+        for (let i = 0; i < e.target.elements.length - 1; i++) {
+            e.target.elements[i].value = "";
+        }
+    }
+
+    function SignIn(e) {
+        e.preventDefault();
+        closeModalSignIn();
     }
 
     return (
         <div className={showModal ? "modal-window show" : "modal-window"}>
-            u
             <div
                 className={
                     showLogIn
@@ -102,12 +121,12 @@ export default function Modal() {
                 <button
                     className="modal-close"
                     onClick={() => {
-                        closeModalLogIn(false);
+                        closeModalLogIn();
                     }}
                 >
                     X
                 </button>
-                <form className="form-in">
+                <form className="form-in" onSubmit={(e) => LogIn(e)}>
                     <label htmlFor="log-in-email"></label>
                     <input
                         id="log-in-email"
@@ -123,6 +142,7 @@ export default function Modal() {
                     <label htmlFor="log-in-uniquename"></label>
                     <input
                         id="log-in-uniquename"
+                        name="log-in-uniquename"
                         type="text"
                         placeholder="Unique name"
                         onChange={(e) => validator("newname", e.target.value)}
@@ -163,15 +183,16 @@ export default function Modal() {
                 <button
                     className="modal-close"
                     onClick={() => {
-                        closeModalSignIn(false);
+                        closeModalSignIn();
                     }}
                 >
                     X
                 </button>
-                <form className="form-in">
+                <form className="form-in" onSubmit={(e) => SignIn(e)}>
                     <label htmlFor="sign-in-uniquename"></label>
                     <input
                         id="sign-in-uniquename"
+                        name="sign-in-uniquename"
                         type="text"
                         placeholder="Unique name"
                         onChange={(e) => validator("name", e.target.value)}

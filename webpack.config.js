@@ -8,7 +8,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, "/public"),
         filename: "index.js",
-        assetModuleFilename: "public/images/[name].[ext]",
+        assetModuleFilename: "images/[name].[ext]",
     },
     module: {
         rules: [

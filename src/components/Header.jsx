@@ -2,22 +2,46 @@ import React from "react";
 import "../styles/Header.scss";
 import brand from "../img/brand.svg";
 import burgerMenu from "../img/burger-menu.svg";
-import Modal from "./Modal.jsx";
+import { USER_NAME } from "./reducers/consts";
 
-import { Show_Modal, Show_SignIn, Show_LogIn } from "./reducers/actions";
-import { useDispatch } from "react-redux";
+import {
+    Show_Modal,
+    Show_SignIn,
+    Show_LogIn,
+    Show_Menu,
+    Forget_Me,
+} from "./reducers/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 
 export default function Header() {
     const dispatch = useDispatch();
-    function openModalSignIn(value) {
-        dispatch(Show_Modal(value));
-        dispatch(Show_SignIn(value));
+
+    const userName = useSelector((state) => state.AuthReducer.userName);
+    const showMenu = useSelector((state) => state.ModalReducer.showMenu);
+
+    function openModalSignIn() {
+        dispatch(Show_Menu(false));
+        dispatch(Show_Modal(true));
+        dispatch(Show_SignIn(true));
     }
-    function openModalLogIn(value) {
+    function openModalLogIn() {
+        dispatch(Show_Menu(false));
+        dispatch(Show_Modal(true));
+        dispatch(Show_LogIn(true));
+    }
+    function openMenu() {
+        dispatch(Show_Modal(true));
+        dispatch(Show_Menu(true));
+    }
+    function closeMenu(value) {
+        dispatch(Show_Menu(value));
         dispatch(Show_Modal(value));
-        dispatch(Show_LogIn(value));
+    }
+    function forgetMe() {
+        localStorage.removeItem(USER_NAME);
+        dispatch(Forget_Me());
     }
     return (
         <div className="Header">
@@ -27,7 +51,10 @@ export default function Header() {
                         <img src={brand} alt="brand"></img>
                     </Link>
                 </div>
-                <div className="menu">
+                <div className={showMenu ? "menu menu-show" : "menu"}>
+                    <button className="close-menu" onClick={() => closeMenu()}>
+                        X
+                    </button>
                     <div className="menu-list">
                         <ul className="list">
                             <li className="list-item">
@@ -43,32 +70,40 @@ export default function Header() {
                     </div>
                     <div className="menu-search">
                         <div className="login-btns">
-                            <div className="not-auth">
-                                <button
-                                    className="sign-in"
-                                    onClick={() => {
-                                        openModalSignIn(true);
-                                    }}
-                                >
-                                    Sign in
-                                </button>
-                                <span className="OR">|</span>
-                                <button
-                                    className="log-in"
-                                    onClick={() => {
-                                        openModalLogIn(true);
-                                    }}
-                                >
-                                    Log in
-                                </button>
-                            </div>
-                            <div className="auth">
-                                <span className="welcome">
-                                    Hello, Your Name...
-                                </span>
-                                <button className="sign-out">Sign out</button>
-                            </div>
-                            <Modal></Modal>
+                            {userName ? (
+                                <div className="auth">
+                                    <span className="welcome">
+                                        Welcome,{" "}
+                                        <Link to="/home">{userName}...!</Link>
+                                    </span>
+                                    <button
+                                        className="sign-out"
+                                        onClick={() => forgetMe()}
+                                    >
+                                        Sign out
+                                    </button>
+                                </div>
+                            ) : (
+                                <div className="not-auth">
+                                    <button
+                                        className="sign-in"
+                                        onClick={() => {
+                                            openModalSignIn();
+                                        }}
+                                    >
+                                        Sign in
+                                    </button>
+                                    <span className="OR">|</span>
+                                    <button
+                                        className="log-in"
+                                        onClick={() => {
+                                            openModalLogIn();
+                                        }}
+                                    >
+                                        Log in
+                                    </button>
+                                </div>
+                            )}
                         </div>
                         <div className="searcher">
                             <span className="search-icon">
@@ -94,7 +129,7 @@ export default function Header() {
                         </div>
                     </div>
                 </div>
-                <div className="burger-menu-wrap">
+                <div className="burger-menu-wrap" onClick={() => openMenu()}>
                     <img
                         className="burger-menu"
                         src={burgerMenu}
