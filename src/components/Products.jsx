@@ -1,10 +1,17 @@
 import React from "react";
-import products from "../data/products.js";
+import products from "../server/products.js";
 import "../styles/Products.scss";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Selected_Product, Product } from "./reducers/actions.js";
 
 export default function Products() {
-    console.log(products);
+    const dispatch = useDispatch();
+
+    function selectItem(product) {
+        dispatch(Selected_Product(true));
+        dispatch(Product(product));
+    }
     return (
         <div className="products">
             <div className="products-wrap">
@@ -16,7 +23,10 @@ export default function Products() {
                         return (
                             <div className="item" key={product.id}>
                                 <div className="item-img">
-                                    <Link to="#">
+                                    <Link
+                                        to="/item"
+                                        onClick={() => selectItem(product)}
+                                    >
                                         <img
                                             src={product.img}
                                             alt="product-img"
@@ -25,7 +35,11 @@ export default function Products() {
                                 </div>
                                 <div className="item-info">
                                     <div className="item-name">
-                                        <Link to="#" className="name">
+                                        <Link
+                                            to="/item"
+                                            className="name"
+                                            onClick={() => selectItem(product)}
+                                        >
                                             {product.name}
                                         </Link>
                                     </div>

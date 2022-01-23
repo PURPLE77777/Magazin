@@ -20,7 +20,7 @@ const products = [
     {
         id: 3,
         name: "Game notebook MSI Thin GF63 11UC-219XRU",
-        img: "https://cdn1.ozone.ru/s3/multimedia-r/wc400/6030770343.jpg",
+        img: "https://content2.onliner.by/catalog/device/header/6e0a80a220342c7a57d5252ce49bc397.jpeg",
         price: "2750,00 r.",
         tags: ["#notebook", "#game", "#msi"],
         description:

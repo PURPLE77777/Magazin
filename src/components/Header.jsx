@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Header.scss";
 import brand from "../img/brand.svg";
+import imgProfile from "../img/profile-anon.png";
 import burgerMenu from "../img/burger-menu.svg";
 import { USER_NAME } from "./reducers/consts";
 
@@ -72,9 +73,18 @@ export default function Header() {
                         <div className="login-btns">
                             {userName ? (
                                 <div className="auth">
+                                    <Link to="/profile">
+                                        <img
+                                            className="img-profile"
+                                            src={imgProfile}
+                                            alt="img-profile"
+                                        ></img>
+                                    </Link>
                                     <span className="welcome">
                                         Welcome,{" "}
-                                        <Link to="/home">{userName}...!</Link>
+                                        <Link to="/profile">
+                                            {userName}...!
+                                        </Link>
                                     </span>
                                     <button
                                         className="sign-out"

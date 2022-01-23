@@ -7,10 +7,15 @@
         justify-content: space-between;
         align-items: center;
         .brend {
-            img {
-                width: 50px;
-                cursor: pointer;
+            a {
                 border-radius: 50%;
+                display: block;
+                img {
+                    display: block;
+                    width: 50px;
+                    cursor: pointer;
+                    border-radius: 50%;
+                }
             }
         }
         .menu {
@@ -150,9 +155,21 @@
                         }
                     }
                     .auth {
+                        display: flex;
+                        flex-flow: row nowrap;
+                        justify-content: space-between;
+                        align-items: center;
+                        a {
+                            border-radius: 50%;
+                            .img-profile {
+                                width: 30px;
+                                display: block;
+                                border-radius: 50%;
+                            }
+                        }
                         .welcome {
                             color: #8a8a8a;
-                            margin-right: 20px;
+                            margin: 0px 20px 0px 10px;
                             a {
                                 color: #fbff09;
                                 text-decoration: none;
@@ -316,7 +333,7 @@
         .burger-menu-wrap:active::after {
             transform: scale(1);
         }
-        @media (max-width: 900px) {
+        @media (max-width: 1020px) {
             .burger-menu-wrap {
                 display: block;
             }
@@ -371,6 +388,11 @@
                             }
                         }
                         .auth {
+                            a {
+                                .img-profile {
+                                    width: 40px;
+                                }
+                            }
                             .sign-out {
                                 font-size: 16pt;
                             }

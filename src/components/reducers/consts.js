@@ -6,3 +6,5 @@ export const AUTH = "AUTH";
 export const REMEMBER_ME = "REMEMBER_ME";
 export const USER_NAME = "USER_NAME";
 export const FORGET_ME = "FORGET_ME";
+export const SELECTED_PRODUCT = "SELECTED_PRODUCT";
+export const PRODUCT = "PRODUCT";

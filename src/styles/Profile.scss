@@ -1,0 +1,40 @@
+.profile {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    .profile-wrap {
+        display: flex;
+        flex-flow: row nowrap;
+        background: rgba($color: #000000, $alpha: 0.8);
+        max-width: 800px;
+        padding: 20px 30px;
+        border-radius: 20px;
+        .profile-img {
+            img {
+                width: 150px;
+            }
+        }
+        .profile-info {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            .profile-name {
+                h4 {
+                    color: #02ff50;
+                }
+            }
+            .collections {
+                .list-collections {
+                    .item-collection {
+                        a {
+                            text-decoration: none;
+                        }
+                        a:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -6,6 +6,8 @@ import {
     AUTH,
     REMEMBER_ME,
     FORGET_ME,
+    SELECTED_PRODUCT,
+    PRODUCT,
 } from "./consts.js";
 
 export const Show_Modal = (value) => {
@@ -28,4 +30,10 @@ export const Remember_Me = (value) => {
 };
 export const Forget_Me = () => {
     return { type: FORGET_ME, data: null };
+};
+export const Selected_Product = (value) => {
+    return { type: SELECTED_PRODUCT, data: value };
+};
+export const Product = (product) => {
+    return { type: PRODUCT, data: product };
 };
