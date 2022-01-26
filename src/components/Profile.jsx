@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import imgProfile from "../img/profile-anon.png";
 import "../styles/Profile.scss";
+import { useSelector } from "react-redux";
 
 export default function Profile() {
+    const userName = useSelector((state) => state.AuthReducer.userName);
     return (
         <div className="profile">
             <div className="profile-wrap">
@@ -12,7 +14,7 @@ export default function Profile() {
                 </div>
                 <div className="profile-info">
                     <div className="profile-name">
-                        <h4>PURPLE</h4>
+                        <h4>{userName}</h4>
                     </div>
                     <div className="collections">
                         <ul className="list-collections">
