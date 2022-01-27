@@ -9,7 +9,7 @@ const conn = mysql.createConnection({
     password: "12345",
     database: "Magazin",
 });
-// в dependencies в .gitignore /node_modules
+
 function getUsers() {
     conn.query("SELECT * FROM users", (err, res) => {
         if (err) return console.log(err);
