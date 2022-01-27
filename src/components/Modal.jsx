@@ -98,17 +98,20 @@ export default function Modal() {
             email: e.target["log-in-email"].value,
             password: e.target["log-in-password"].value,
         };
-
-        console.log(userInfo);
-        // const isAuth = await fetch("http://localhost:3000/auth", {
+        // , {
         //     method: "POST",
         //     headers: {
         //         Accept: "application/json",
         //         "Content-Type": "application/json;charset=utf-8",
         //     },
         //     body: JSON.stringify(userInfo),
-        // });
-        // console.log(await users.json());
+        // }
+        console.log(userInfo);
+        const users = await fetch("http://localhost:3000/api/auth")
+            .then((data) => data.json)
+            .then((data) => console.log(data))
+            .catch((e) => console.log(e));
+        // console.log(users.json());
 
         closeModalLogIn();
         dispatch(Remember_Me(e.target.elements["log-in-uniquename"].value));
@@ -152,7 +155,11 @@ export default function Modal() {
                 >
                     X
                 </button>
-                <form className="form-in" onSubmit={(e) => LogIn(e)}>
+                <form
+                    className="form-in"
+                    method="get"
+                    onSubmit={(e) => LogIn(e)}
+                >
                     <label htmlFor="log-in-email"></label>
                     <input
                         id="log-in-email"

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Magazin</title>
+    </head>
+    <body>
+        <h1>Registration</h1>
+        <form>
+            <label for="name"
+                >Name:
+                <input type="text" id="name" name="name" />
+            </label>
+            <br />
+            <br />
+            <label for="pass"
+                >Password:
+                <input type="password" id="pass" name="password" />
+            </label>
+            <br />
+            <br />
+            <button type="submit">Submit</button>
+        </form>
+        <script>
+            let form = document.forms[0];
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                let user = {
+                    name: e.target.name.value,
+                    password: e.target.password.value,
+                };
+                let response = await fetch("http://localhost:3000/auth", {
+                    method: "post",
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8",
+                    },
+                    body: JSON.stringify(user),
+                })
+                    .then((data) => data.json())
+                    .then((data) => console.log(data))
+                    .catch((e) => console.log(e));
+                // let result = await response;
+                // console.log(result);
+            });
+        </script>
+    </body>
+</html>

@@ -22,12 +22,13 @@ export default function App() {
                 <Modal></Modal>
                 <div className="main">
                     <Routes>
+                        <Route path="/" element={Home()}></Route>
                         <Route path="/home" element={Home()}></Route>
                         <Route path="/products" element={Products()}></Route>
                         <Route path="/about" element={About()}></Route>
                         <Route path="/profile" element={Profile()}></Route>
                         <Route path="/item" element={Item()}></Route>
-                        <Route path="*" element={Home()}></Route>
+                        {/* <Route path="*" element={Home()}></Route> */}
                     </Routes>
                 </div>
                 <Footer></Footer>
