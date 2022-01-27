@@ -90,8 +90,26 @@ export default function Modal() {
         dispatch(Show_Modal(false));
     }
 
-    function LogIn(e) {
+    async function LogIn(e) {
         e.preventDefault();
+
+        let userInfo = {
+            username: e.target["log-in-uniquename"].value,
+            email: e.target["log-in-email"].value,
+            password: e.target["log-in-password"].value,
+        };
+
+        console.log(userInfo);
+        // const isAuth = await fetch("http://localhost:3000/auth", {
+        //     method: "POST",
+        //     headers: {
+        //         Accept: "application/json",
+        //         "Content-Type": "application/json;charset=utf-8",
+        //     },
+        //     body: JSON.stringify(userInfo),
+        // });
+        // console.log(await users.json());
+
         closeModalLogIn();
         dispatch(Remember_Me(e.target.elements["log-in-uniquename"].value));
         localStorage.setItem(
@@ -106,6 +124,14 @@ export default function Modal() {
     function SignIn(e) {
         e.preventDefault();
         closeModalSignIn();
+        dispatch(Remember_Me(e.target.elements["sign-in-uniquename"].value));
+        localStorage.setItem(
+            USER_NAME,
+            e.target.elements["sign-in-uniquename"].value
+        );
+        for (let i = 0; i < e.target.elements.length - 1; i++) {
+            e.target.elements[i].value = "";
+        }
     }
 
     return (

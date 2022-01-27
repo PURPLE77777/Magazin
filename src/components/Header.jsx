@@ -36,9 +36,9 @@ export default function Header() {
         dispatch(Show_Modal(true));
         dispatch(Show_Menu(true));
     }
-    function closeMenu(value) {
-        dispatch(Show_Menu(value));
-        dispatch(Show_Modal(value));
+    function closeMenu() {
+        dispatch(Show_Menu(false));
+        dispatch(Show_Modal(false));
     }
     function forgetMe() {
         localStorage.removeItem(USER_NAME);
@@ -59,13 +59,22 @@ export default function Header() {
                     <div className="menu-list">
                         <ul className="list">
                             <li className="list-item">
-                                <Link to="/home">Home</Link>
+                                <Link to="/home" onClick={() => closeMenu()}>
+                                    Home
+                                </Link>
                             </li>
                             <li className="list-item">
-                                <Link to="/products">Products</Link>
+                                <Link
+                                    to="/products"
+                                    onClick={() => closeMenu()}
+                                >
+                                    Products
+                                </Link>
                             </li>
                             <li className="list-item">
-                                <Link to="/about">About</Link>
+                                <Link to="/about" onClick={() => closeMenu()}>
+                                    About
+                                </Link>
                             </li>
                         </ul>
                     </div>
@@ -73,7 +82,10 @@ export default function Header() {
                         <div className="login-btns">
                             {userName ? (
                                 <div className="auth">
-                                    <Link to="/profile">
+                                    <Link
+                                        to="/profile"
+                                        onClick={() => closeMenu()}
+                                    >
                                         <img
                                             className="img-profile"
                                             src={imgProfile}
@@ -82,7 +94,10 @@ export default function Header() {
                                     </Link>
                                     <span className="welcome">
                                         Welcome,{" "}
-                                        <Link to="/profile">
+                                        <Link
+                                            to="/profile"
+                                            onClick={() => closeMenu()}
+                                        >
                                             {userName}...!
                                         </Link>
                                     </span>
