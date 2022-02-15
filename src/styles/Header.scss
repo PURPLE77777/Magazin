@@ -12,7 +12,7 @@
                 display: block;
                 img {
                     display: block;
-                    width: 50px;
+                    width: 75px;
                     cursor: pointer;
                     border-radius: 50%;
                 }
@@ -67,10 +67,10 @@
                     list-style: none;
                     text-align: center;
                     .list-item {
-                        margin: 0px 15px;
+                        margin: 0px 25px;
                         a {
                             display: block;
-                            font-size: 13pt;
+                            font-size: 19pt;
                             color: yellow;
                             text-decoration: none;
                             width: inherit;
@@ -102,6 +102,7 @@
                             border-radius: 5px;
                             font-family: "Lato", sans-serif;
                             font-weight: 500;
+                            font-size: 16pt;
                             background: transparent;
                             cursor: pointer;
                             transition: all 0.3s ease;
@@ -151,7 +152,7 @@
                         .OR {
                             color: white;
                             font-size: 16pt;
-                            margin: 0px 5px;
+                            margin: 0px 10px;
                         }
                     }
                     .auth {
@@ -162,7 +163,7 @@
                         a {
                             border-radius: 50%;
                             .img-profile {
-                                width: 30px;
+                                width: 40px;
                                 display: block;
                                 border-radius: 50%;
                             }
@@ -170,6 +171,7 @@
                         .welcome {
                             color: #8a8a8a;
                             margin: 0px 20px 0px 10px;
+                            font-size: 18pt;
                             a {
                                 color: #fbff09;
                                 text-decoration: none;
@@ -186,6 +188,7 @@
                             border-radius: 5px;
                             font-family: "Lato", sans-serif;
                             font-weight: 500;
+                            font-size: 14pt;
                             background: transparent;
                             cursor: pointer;
                             transition: all 0.3s ease;
@@ -236,13 +239,13 @@
                     align-items: center;
                     flex-flow: row nowrap;
                     position: relative;
-                    width: 280px;
-                    height: 30px;
+                    width: 500px;
+                    height: 40px;
                     .search-icon {
                         display: block;
                         position: absolute;
                         left: 0%;
-                        font-size: 19pt;
+                        font-size: 26pt;
                         width: calc(100% - 89.285%);
                         text-align: center;
                         height: inherit;
@@ -250,6 +253,10 @@
                         border-radius: 10px 0px 0px 10px;
                         border-right: 1px solid #222222;
                         background-color: black;
+                        svg {
+                            width: 23px;
+                            height: 23px;
+                        }
                     }
                     .search {
                         width: 100%;
@@ -260,6 +267,7 @@
                         background-color: black;
                         border-radius: 10px;
                         color: white;
+                        font-size: 16pt;
                     }
                     .search:focus-visible {
                         outline: 2px solid yellow;
@@ -274,6 +282,7 @@
                         border-radius: 0px 10px 10px 0px;
                         font-family: "Lato", sans-serif;
                         font-weight: 500;
+                        font-size: 18pt;
                         background: transparent;
                         cursor: pointer;
                         transition: all 0.3s ease;

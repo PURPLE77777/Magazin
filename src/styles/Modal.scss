@@ -24,11 +24,12 @@
         .title {
             text-align: center;
             margin-top: 15px;
+            font-size: 20pt;
         }
         .form-in {
             margin: 20px 30px;
             text-align: center;
-            width: 300px;
+            width: 500px;
             input {
                 background-color: black;
                 border: none;
@@ -39,6 +40,8 @@
                 color: white;
                 outline: none;
                 width: 93%;
+                height: 35px;
+                font-size: 16pt;
             }
             input:focus {
                 outline: 2px solid yellow;
@@ -55,6 +58,7 @@
                 border-radius: 5px;
                 border: none;
                 font-weight: bold;
+                font-size: 16pt;
                 margin-top: 10px;
                 color: #1a1f25;
                 cursor: pointer;
@@ -92,6 +96,7 @@
                 width: 100%;
                 color: red;
                 margin-top: 5px;
+                font-size: 17pt;
             }
             .see {
                 display: block;
@@ -105,6 +110,7 @@
             border: none;
             border-radius: 12px;
             color: white;
+            font-size: 15pt;
         }
         .modal-close:hover,
         .modal-close:hover::after {
@@ -117,8 +123,8 @@
             position: absolute;
             top: -1px;
             right: 1px;
-            width: 19px;
-            height: 18px;
+            width: 22px;
+            height: 24px;
             border-radius: 12px;
             background-color: rgb(255, 0, 0, 0.5);
             transform: scale(0);

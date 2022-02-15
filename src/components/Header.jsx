@@ -98,7 +98,7 @@ export default function Header() {
                                             to="/profile"
                                             onClick={() => closeMenu()}
                                         >
-                                            {userName}...!
+                                            {userName}!
                                         </Link>
                                     </span>
                                     <button

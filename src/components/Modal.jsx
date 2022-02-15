@@ -16,11 +16,13 @@ export default function Modal() {
     const showLogIn = useSelector((state) => state.ModalReducer.showLogIn);
 
     const [statusPass, setStatusPass] = useState(false);
+    const [statusNewPass, setStatusNewPass] = useState(false);
     const [statusName, setStatusName] = useState(false);
     const [statusNewName, setStatusNewName] = useState(false);
     const [statusEmail, setStatusEmail] = useState(false);
 
     const [errorPass, setErrorPass] = useState(false);
+    const [errorNewPass, setErrorNewPass] = useState(false);
     const [errorName, setErrorName] = useState(false);
     const [errorNewName, setErrorNewName] = useState(false);
     const [errorEmail, setErrorEmail] = useState(false);
@@ -28,24 +30,35 @@ export default function Modal() {
     const validator = (type, value) => {
         switch (type) {
             case "newname": {
-                const regexp = /[a-zA-Z\d]{10,}/gm;
+                const regexp = /[a-zA-Z\d]{3,}/gm;
                 if (regexp.test(value)) {
-                    setStatusNewName(false);
-                    setErrorNewName(true);
-                } else {
                     setStatusNewName(true);
                     setErrorNewName(false);
+                } else {
+                    setStatusNewName(false);
+                    setErrorNewName(true);
                 }
                 break;
             }
             case "name": {
-                const regexp = /[a-zA-Z\d]{6,}/gm;
+                const regexp = /[a-zA-Z\d]{3,}/gm;
                 if (regexp.test(value)) {
                     setStatusName(true);
                     setErrorName(false);
                 } else {
                     setStatusName(false);
                     setErrorName(true);
+                }
+                break;
+            }
+            case "newpassword": {
+                const regexp = /[a-zA-Z\d]{6,}/gm;
+                if (regexp.test(value)) {
+                    setStatusNewPass(true);
+                    setErrorNewPass(false);
+                } else {
+                    setStatusNewPass(false);
+                    setErrorNewPass(true);
                 }
                 break;
             }
@@ -90,27 +103,25 @@ export default function Modal() {
         dispatch(Show_Modal(false));
     }
 
-    async function LogIn(e) {
+    function LogIn(e) {
         e.preventDefault();
 
-        let userInfo = {
-            username: e.target["log-in-uniquename"].value,
-            email: e.target["log-in-email"].value,
-            password: e.target["log-in-password"].value,
-        };
-        // , {
+        // let userInfo = {
+        //     username: e.target["log-in-uniquename"].value,
+        //     email: e.target["log-in-email"].value,
+        //     password: e.target["log-in-password"].value,
+        // };
+        // const users = await fetch("/auth", {
         //     method: "POST",
         //     headers: {
         //         Accept: "application/json",
         //         "Content-Type": "application/json;charset=utf-8",
         //     },
         //     body: JSON.stringify(userInfo),
-        // }
-        console.log(userInfo);
-        const users = await fetch("http://localhost:3000/api/auth")
-            .then((data) => data.json)
-            .then((data) => console.log(data))
-            .catch((e) => console.log(e));
+        // })
+        //     .then((data) => data.json)
+        //     .then((data) => console.log(data))
+        //     .catch((e) => console.log(e));
         // console.log(users.json());
 
         closeModalLogIn();
@@ -155,11 +166,7 @@ export default function Modal() {
                 >
                     X
                 </button>
-                <form
-                    className="form-in"
-                    method="get"
-                    onSubmit={(e) => LogIn(e)}
-                >
+                <form className="form-in" onSubmit={(e) => LogIn(e)}>
                     <label htmlFor="log-in-email"></label>
                     <input
                         id="log-in-email"
@@ -182,7 +189,7 @@ export default function Modal() {
                         required
                     ></input>
                     <span className={errorNewName ? "error see" : "error"}>
-                        This name already exists!
+                        Name must have 3 symbols or more!
                     </span>
                     <br></br>
                     <label htmlFor="log-in-password"></label>
@@ -190,16 +197,20 @@ export default function Modal() {
                         id="log-in-password"
                         type="password"
                         placeholder="Password"
-                        onChange={(e) => validator("password", e.target.value)}
+                        onChange={(e) =>
+                            validator("newpassword", e.target.value)
+                        }
                         required
                     ></input>
-                    <span className={errorPass ? "error see" : "error"}>
+                    <span className={errorNewPass ? "error see" : "error"}>
                         Password must have 6 or more symbols
                     </span>
                     <br></br>
                     <button
                         type="submit"
-                        disabled={!(statusNewName && statusEmail && statusPass)}
+                        disabled={
+                            !(statusNewName && statusEmail && statusNewPass)
+                        }
                     >
                         Log in
                     </button>
